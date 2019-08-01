@@ -35,6 +35,6 @@ Under the terminal you can see that the command is executed:
 ![5.PNG](http://security.sangfor.com.cn:8000/ueditor/php/upload/image/20190627/1561626103122469.png)
 You can also see that the command is executed by capturing the packet:
 ![4.PNG](http://security.sangfor.com.cn:8000/ueditor/php/upload/image/20190627/1561624621269779.png)
-Can fix the vulnerability by filtering the passwd parameter.
+Can fix the vulnerability by filtering the ip and port parameters.
 
 Best wishes
