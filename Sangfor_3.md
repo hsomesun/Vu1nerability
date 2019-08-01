@@ -29,6 +29,7 @@ Accept-Language: zh-CN,zh;q=0.9
 Cookie: language=zh_CN; TWFID=1a000798af849707; g_LoginPage=login_psw; VisitTimes=0; haveLogin=0; VpnLine=http%3A%2F%2F10.92.2.17%2F; sinfor_session_id=WA16F9E951F925B56F78666EFBF6DB22; PHPSESSID=e116e0e2c17bed877d1f825a77e6babf; usermrgstate=%7B%22params%22%3A%7B%22grpid%22%3A%22-100%22%2C%22recflag%22%3A0%2C%22filter%22%3A0%7D%2C%22pageparams%22%3A%7B%22start%22%3A0%2C%22limit%22%3A25%7D%2C%22otherparams%22%3A%7B%22searchtype%22%3A0%2C%22recflag%22%3Afalse%7D%7D; hidecfg=%7B%22name%22%3Afalse%2C%22flag%22%3Afalse%2C%22note%22%3Afalse%2C%22expire%22%3Atrue%2C%22lastlogin_time%22%3Atrue%2C%22phone%22%3Atrue%2C%22allocateip%22%3Atrue%2C%22other%22%3Afalse%2C%22state%22%3Afalse%7D; x-anti-csrf-gcs=0FB447BC0046963D
 
 You can see the heap leak clearly on the web management interface:
+
 ![1.PNG](http://security.sangfor.com.cn:8000/ueditor/php/upload/image/20190627/1561624566926470.png)
 
 This vulnerability can be fixed by modifying the logic of the filter function.
