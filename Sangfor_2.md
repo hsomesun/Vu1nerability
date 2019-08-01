@@ -15,8 +15,7 @@ Guess the developer wants to filter the ip and port parameters by the str_filter
 The implementation of the str_filter function is as follows:
 ![2.PNG](http://security.sangfor.com.cn:8000/ueditor/php/upload/image/20190627/1561622267799970.png)
 
-In this while loop, v2 does not play any role, the range of filtering characters is also problematic, resulting in as long as the number and '/' will fall into the while loop, always write data to a1, but if it is other characters For example, if the letter, '%', etc., it will return 0, but this just meets the judgment of if, and can continue the processing. This logic, just enough to constantly cover the address on the heap, leaks the data on the heap through formatted strings such as %s and %x.
-The last parameter is spliced, and the command is executed by the call_DoShellProxy function to call popen.
+In this while loop, v2 does not play any role, the range of filtering characters is also problematic. Finally, the parameters are spliced, and the call is executed by the call_DoShellProxy function to call popen.
 
 The payload of the vulnerability recurrence is as follows:
 Command injection through the ip parameter on port 1000:
