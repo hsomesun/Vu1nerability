@@ -1,14 +1,18 @@
 Hi,
 
 I am eack from Codesafe Team of Legendsec at Qi'anxin Group.
+
 Recently, I found that the Sangfor SSL VPN-2050 has a command injection vulnerability. The attacker can obtain the root shell and execute arbitrary commands. The tested device firmware version is M7.6.3. The vulnerability details are as follows:
+
 This vulnerability is due to a logic vulnerability in the filter function, resulting in command execution of the ip and port parameters.
+
 The vulnerability exists in gcs_webui.cgi, which corresponds to the IP address and port options under "System Maintenance - Proxy Settings" on the administration page.
 
 Vulnerability code:
 ![1.PNG](http://security.sangfor.com.cn:8000/ueditor/php/upload/image/20190627/1561622195475389.png)
 
-Guess the developer wants to filter the ip and port parameters by the str_filter function. In the first if judgment, the str_filter function needs to return 0 to continue the following processing of the port parameter. The implementation of the str_filter function is as follows:
+Guess the developer wants to filter the ip and port parameters by the str_filter function. In the first if judgment, the str_filter function needs to return 0 to continue the following processing of the port parameter. 
+The implementation of the str_filter function is as follows:
 ![2.PNG](http://security.sangfor.com.cn:8000/ueditor/php/upload/image/20190627/1561622267799970.png)
 
 In this while loop, v2 does not play any role, the range of filtering characters is also problematic, resulting in as long as the number and '/' will fall into the while loop, always write data to a1, but if it is other characters For example, if the letter, '%', etc., it will return 0, but this just meets the judgment of if, and can continue the processing. This logic, just enough to constantly cover the address on the heap, leaks the data on the heap through formatted strings such as %s and %x.
@@ -32,3 +36,6 @@ Under the terminal you can see that the command is executed:
 ![5.PNG](http://security.sangfor.com.cn:8000/ueditor/php/upload/image/20190627/1561626103122469.png)
 You can also see that the command is executed by capturing the packet:
 ![4.PNG](http://security.sangfor.com.cn:8000/ueditor/php/upload/image/20190627/1561624621269779.png)
+Can fix the vulnerability by filtering the passwd parameter.
+
+Best wishes
