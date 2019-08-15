@@ -1,1 +1,1 @@
-Sangfor SSL VPN-2250
+Sangfor SSL VPN-2050
